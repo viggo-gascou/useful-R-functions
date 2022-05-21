@@ -19,42 +19,42 @@ output:
 \listoffigures
 \newpage
 
-```{r, ECHO = FALSE, warning = FALSE}
+```{r "0_useful_functions-0", ECHO = FALSE, warning = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
 library(UsingR)
 ```
 
-```{r child = here::here("1_random_variables_simulation.Rmd")}
+```{r child = here::here("Chapters","1_random_variables_simulation.Rmd")}
 ```
 
-```{r child = here::here("2_expectation_variance.Rmd")}
+```{r child = here::here("Chapters","2_expectation_variance.Rmd")}
 ```
 
-```{r child = here::here("3_joint_independence.Rmd")}
+```{r child = here::here("Chapters","3_joint_independence.Rmd")}
 ```
 
-```{r child = here::here("4_covariance_correlation.Rmd")}
+```{r child = here::here("Chapters","4_covariance_correlation.Rmd")}
 ```
 
-```{r child = here::here("5_computations_random_variables.Rmd")}
+```{r child = here::here("Chapters","5_computations_random_variables.Rmd")}
 ```
 
-```{r child = here::here("6_large_numbers_central_limit.Rmd")}
+```{r child = here::here("Chapters","6_large_numbers_central_limit.Rmd")}
 ```
 
-```{r child = here::here("7_exploratory_graphical.Rmd")}
+```{r child = here::here("Chapters","7_exploratory_graphical.Rmd")}
 ```
 
-```{r child = here::here("8_exploratory_numerical.Rmd")}
+```{r child = here::here("Chapters","8_exploratory_numerical.Rmd")}
 ```
 
-```{r child = here::here("9_statistical_models.Rmd")}
+```{r child = here::here("Chapters","9_statistical_models.Rmd")}
 ```
 
-```{r child = here::here("10_bootstrapping.Rmd")}
+```{r child = here::here("Chapters","10_bootstrapping.Rmd")}
 ```
 
-```{r child = here::here("11_unbiased_estimator.Rmd")}
+```{r child = here::here("Chapters","11_unbiased_estimator.Rmd")}
 ```

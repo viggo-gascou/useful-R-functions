@@ -7,7 +7,7 @@ output:
     highlight: arrow
 ---
 
-```{r, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r "7_exploratory_graphical-0", ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -21,7 +21,7 @@ library(UsingR)
 Histograms are useful graphical way of representing a data set and allows you to spot patterns that were otherwise not visible in the raw dataset.
 
 Take for example this dataset of randomly generated numbers sampled from a normal distribution:
-```{r, echo = FALSE, warning = FALSE}
+```{r "7_exploratory_graphical-1", echo = FALSE, warning = FALSE}
 set.seed(1)
 data <- rnorm(100, mean = 1, sd = .2)
 data <- matrix(data, 10, 10, byrow = TRUE)
@@ -40,7 +40,7 @@ Now this can be done in two ways:
 
 ### Base R `hist(data)`
 To see all the available arguments that you can pass to the `hist()` function simply write `?hist` in the `R` console
-```{r}
+```{r "7_exploratory_graphical-2"}
 set.seed(1)
 data <- rnorm(1000, mean = 1, sd = .2)
 hist(data, col = "#f99d9d",
@@ -50,7 +50,7 @@ hist(data, col = "#f99d9d",
 ### Plotting multiple histograms on one plot with `hist(data)`
 
 To plot multiple histograms in with `Base R` one plot one can do as follows:
-```{r}
+```{r "7_exploratory_graphical-3"}
 #make this example reproducible
 set.seed(1)
 
@@ -70,7 +70,7 @@ legend("topright", c("x1 variable", "x2 variable"), fill = c("red", "green"))
 ### ggplot2 `ggplot(data)`
 
 Now to use `ggplot` to plot your data you have to first make it into a data frame:
-```{r}
+```{r "7_exploratory_graphical-4"}
 library(ggplot2)
 set.seed(1)
 df <- data.frame(var = rep("x1", 1000),
@@ -87,7 +87,7 @@ ggplot(df, aes(x = value, fill = var)) + geom_histogram(breaks = brx)
 
 To plot multiple histograms in with `ggplot2` one plot one can do as follows:
 
-```{r}
+```{r "7_exploratory_graphical-5"}
 #make this example reproducible
 set.seed(1)
 
@@ -118,17 +118,17 @@ the bandwidth is a tuning parameter that determines how wide the piles of sand w
 
 Formally, a kernel $K$ is a function $K : \mathbb{R} \rightarrow \mathbb{R}$.
 
-```{r kernel-density, echo=FALSE, out.width='100%', fig.cap='Examples of well-known kernels $K$', fig.align='center'}
-knitr::include_graphics(here::here('assets/kernel_density.png'))
+```{r "7_exploratory_graphical-6", echo=FALSE, out.width='100%', fig.cap='Examples of well-known kernels $K$', fig.align='center'}
+knitr::include_graphics(here::here('Chapters', 'assets', 'kernel_density.png'))
 ```
 
 To plot a kernel density estimate you can use either the `densityplot` function from the library `lattice` or you can use the **base R** function `plot` with the parameter `density()`.
 
 For simplicity I will choose to use the **base R** function and using the diamonds dataset from the `UsingR`.
-```{r, message = FALSE}
+```{r "7_exploratory_graphical-7", message = FALSE}
 library(UsingR)
 ```
-```{r, out.width = "100%", out.height="120%"}
+```{r "7_exploratory_graphical-8", out.width = "100%", out.height="120%"}
 kernels <- c("triangular", "rectangular", "gaussian", "cosine", "optcosine", "epanechnikov", "biweight")
 colors <- brewer.pal(7, "Accent")
 for (kernel in 1:7) {
@@ -152,7 +152,7 @@ function of the data.
 
 In `R` this can be done like this:
 
-```{r}
+```{r "7_exploratory_graphical-9"}
 plot(ecdf(diamond$price), col = "#74c6ef")
 ```
 
@@ -172,7 +172,7 @@ first step is to take a look at the data, i.e., to plot the points $(x_i, y_i)$ 
 
 In `R` this can be acheived by simply using the `plot()` function:
 
-```{r}
+```{r "7_exploratory_graphical-10"}
 #create some fake data
 data <- data.frame(x = c(1, 1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10, 11, 11),
                    y = c(13, 14, 17, 12, 23, 24, 25, 25, 24, 28, 32, 33, 35, 40, 41))

@@ -7,7 +7,7 @@ output:
     extra_dependencies: ["booktabs"]
 ---
 
-```{r, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r "10_bootstrapping-0", ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -53,12 +53,12 @@ Before purchasing, you want to make sure that the die is fair.
 The seller provides 1000 samples of the outcomes available in the file 
 `die_samples.Rdata`
 
-```{r}
-load(here::here('assets', 'die_samples.Rdata'))
+```{r "10_bootstrapping-1"}
+load(here::here('Chapters', 'assets', 'die_samples.Rdata'))
 ```
 Determine whether the die is fair or not using bootstrapping
 
-```{r}
+```{r "10_bootstrapping-2"}
 boots <- function(data) {
   means <- c()
   for (i in 1:1000) {
@@ -80,7 +80,7 @@ text(bootstrap_mean, 5, "boot mean", srt = 90, pos = 2)
 As is visible from the plot the die is not totally fair as it has a mean of `r bootstrap_mean` whereas a completely fair die has a mean of `r mean(c(1, 2, 3, 4, 5, 6))`.
 
 We can also use these bootstrapped means to bound the probability that the sample mean is a certain distance away from the norm. If we take the Old Faithful dataset again. Suppose we want to know the probability that the sample mean is more than say 5 seconds away from the norm, we can do as follows
-```{r}
+```{r "10_bootstrapping-3"}
 eruptions <- faithful$eruptions * 60 # multiplying by 60 because dataset is in minutes
 sample_mean <- mean(eruptions)
 bootstrap_means <- c()
@@ -95,7 +95,7 @@ abline(v = -5, lwd = 2, col = "darkgreen")
 
 Since we want to know the probability that the sample mean is more than 5 seconds away from the norm we simply have to subtract the probability that the sample mean is $+5$ seconds away and $-5$ seconds away from the norm. This would give us the probability that the sample mean is between $-5$ and $+5$ seconds away from the norm so in order to find out the probability that the sample mean is more and 5 seconds away from the norm we have to subtract the whole thing by $1$
 
-```{r}
+```{r "10_bootstrapping-4"}
 bootstrap_means_diff_dist <- ecdf(bootstrap_means)
 probability_outside <- 1 - (bootstrap_means_diff_dist(5) - bootstrap_means_diff_dist(-5))
 # calling ecdf(bootstrap_means)(5) tells us probability that it is exactly 5
@@ -117,7 +117,7 @@ The dataset `arctic.oscillations` (in package UsingR) contains a time series fro
 Use parametric bootstrap to judge whether it is safe to assume that the measurements are samples from normal distribution or not. 
 
 
-```{r parametric_bootstrap}
+```{r "10_bootstrapping-5"}
 data <- na.omit(arctic.oscillations)
 
 sample_mean <- mean(data)

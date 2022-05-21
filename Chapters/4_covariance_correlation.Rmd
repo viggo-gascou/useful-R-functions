@@ -7,7 +7,7 @@ output:
     highlight: arrow
 ---
 
-```{r, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r "4_covariance_correlation-0", ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -23,7 +23,7 @@ A covariance matrix is a square matrix that shows the covariance between many di
 
 ### Covariance between two variables
 
-```{r}
+```{r "4_covariance_correlation-1"}
 data <- data.frame(math = c(84, 82, 81, 89, 73, 94, 92, 70, 88, 95),
                    science = c(85, 82, 72, 77, 75, 89, 95, 84, 77, 94),
                    history = c(97, 94, 93, 95, 88, 82, 78, 84, 69, 78))
@@ -34,7 +34,7 @@ cov(data[, c("math", "science")])
 Explanation of the covariance matrix in the following section.
 
 ### Covariance between multiple variables
-```{r}
+```{r "4_covariance_correlation-2"}
 # First, we’ll create a data frame that contains the test scores of 10 different
 # students for three subjects: math, science, and history.
 data <- data.frame(math = c(84, 82, 81, 89, 73, 94, 92, 70, 88, 95),
@@ -61,7 +61,7 @@ A positive number for covariance indicates that two variables tend to increase o
 
 A negative number for covariance indicates that as one variable increases, a second variable tends to decrease. For example, math and history have a negative covariance ($-27.16$), which indicates that students who score high on math tend to score low on history. Conversely, students who score low on math tend to score high on history.
 
-```{r}
+```{r "4_covariance_correlation-3"}
 # if you want to make sure that you only calculate the correlation numerical
 # variables you can use this function:
 cor(data[, unlist(lapply(data, is.numeric))])
@@ -79,7 +79,7 @@ $1$ indicates a perfectly positive linear correlation between two variables
 
 To calculate the correlation between two variables you can use the `cor(x, y)` function.
 
-```{r}
+```{r "4_covariance_correlation-5"}
 #create data frame
 df <- data.frame(A = c(2, 3, 3, 5, 6, 9, 14, 15, 19, 21, 22, 23),
                  B = c(23, 24, 24, 23, 17, 28, 38, 34, 35, 39, 41, 43),
@@ -94,7 +94,7 @@ $`r round(cor(df$A, df$B), 2)`$
 
 You can calculate the correlation between a subset of the variables in your dataset e.g.:
 
-```{r}
+```{r "4_covariance_correlation-6"}
 cor(df[c("A", "B", "D")])
 ```
 
@@ -108,7 +108,7 @@ Meaning that A and D have a somewhat strong negative linear correlation. B and D
 
 You can also calculate the correlation all of the variables in your dataset e.g.:
 
-```{r}
+```{r "4_covariance_correlation-7"}
 cor(df)
 
 # if you want to make sure that you only calculate the correlation numerical

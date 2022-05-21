@@ -7,7 +7,7 @@ output:
     highlight: arrow
 ---
 
-```{r, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r "6_large_numbers_central_limit-0", ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -209,9 +209,9 @@ $$
 \end{aligned}
 $$
 
-```{r CLT figure, echo=FALSE, out.width='75%', fig.cap='Normal distribution with marked area', fig.align='center'}
+```{r "6_large_numbers_central_limit-1", echo=FALSE, out.width='75%', fig.cap='Normal distribution with marked area', fig.align='center'}
 
-knitr::include_graphics(here::here('assets','CLT_graph.png'))
+knitr::include_graphics(here::here('Chapters','assets', 'CLT_graph.png'))
 ```
 
 

@@ -7,7 +7,7 @@ output:
     highlight: arrow
 ---
 
-```{r, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r "3_joint_independence-0", ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -19,7 +19,7 @@ library(UsingR)
 A joint probability is as the name implies the probability of 'joining' the probability of two events i.e., $P(A \cap B)$ (the intersection of $A$ and $B$).
 Take for example this table below:
 
-```{r, echo=FALSE}
+```{r "3_joint_independence-1", echo=FALSE}
 co <- matrix(c(1168, 825, 305, 573, 1312, 1200), byrow = TRUE, nrow = 2)
 rownames(co) <- c("Light", "Dark")
 colnames(co) <- c("Fair/Red", "Medium", "Dark/black")
@@ -48,7 +48,7 @@ taking values 1 to 3 and Y (eye color) taking values 1 and 2.
 
 We determine the joint probability density distribution by dividing the eye and
 hair color combinations by the total amount of records (5383) giving us this table (Table 4):
-```{r}
+```{r "3_joint_independence-2"}
 pmf <- matrix(round(c(1168, 825, 305, 573, 1312, 1200) / 5383, 3),
   byrow = TRUE, nrow = 2)
 rownames(pmf) <- c("1 ", "2 ")
@@ -67,7 +67,7 @@ In order to determine the marginal probability distribution of X and Y, we have 
 marginalize for $Y$ and $X$ respectively which we do by finding $P(X = x)$ and $P(Y = y)$
 which is done by summing all the values that $Y$ and $X$ can take. See table 5
 
-```{r}
+```{r "3_joint_independence-3"}
 marg <- rbind(pmf, colSums(pmf))
 marg2 <- cbind(marg, rowSums(pmf))
 rownames(marg2) <- c("1 ", "2 ", "Px ")

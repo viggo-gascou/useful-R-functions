@@ -7,7 +7,7 @@ output:
     highlight: arrow
 ---
 
-```{r, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r "1_random_variables_simulation-0", ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -24,7 +24,7 @@ The dnorm function returns the value of the probability density function (pdf)
 of a normal distribution, given a random variable `x` a population mean $\mu$ 
 and a population standard deviation $\sigma$
 
-```{r}
+```{r "1_random_variables_simulation-1"}
 #find the value of the standard normal distribution pdf at x=0
 dnorm(x = 0, mean = 0, sd = 1)
 
@@ -38,7 +38,7 @@ dnorm(x = 10, mean = 20, sd = 5)
 `dnorm` is not that useful for solving questions about probability using the 
 normal distribution. It is however useful to create a normal distribution plot:
 
-```{r}
+```{r "1_random_variables_simulation-2"}
 #Create a sequence of 100 equally spaced numbers between -4 and 4
 x <- seq(-4, 4, length = 100)
 
@@ -66,7 +66,7 @@ Suppose the height of males at a certain school is normally distributed with a
 mean of $\mu=70$ inches and a standard deviation of $\sigma = 2$ inches. 
 Approximately what percentage of males at this school are taller than 74 inches?
 
-```{r}
+```{r "1_random_variables_simulation-3"}
 #find percentage of males that are taller than 74 inches in a population with
 #mean = 70 and sd = 2
 pnorm(74, mean = 70, sd = 2, lower.tail = FALSE)
@@ -78,7 +78,7 @@ Suppose the weight of a certain species of otters is normally distributed with a
 mean of $\mu=30$ lbs  and a standard deviation of $\sigma = 5$ lbs.
 Approximately what percentage of this species of otters weight less than 22 lbs?
 
-```{r}
+```{r "1_random_variables_simulation-4"}
 #find percentage of otters that weight less than 22 lbs in a population with
 #mean = 30 and sd = 5
 pnorm(22, mean = 30, sd = 5)
@@ -93,7 +93,7 @@ population mean $\mu$ and population standard deviation $\sigma$.
 Put simply, you can use qnorm to find out what the $Z$-score is of the 
 $p^{th}$ quantile of the normal distribution.
 
-```{r}
+```{r "1_random_variables_simulation-5"}
 #find the Z-score of the 99th quantile of the standard normal distribution
 qnorm(.99, mean = 0, sd = 1)
 
@@ -112,7 +112,7 @@ The function rnorm generates a vector of normally distributed random variables
 given a vector length `n`, a population mean $\mu$ and 
 population standard deviation $\sigma$
 
-```{r}
+```{r "1_random_variables_simulation-6"}
 #generate a vector of 5 normally distributed random variables with mean=10
 #and sd=2
 five <- rnorm(5, mean = 10, sd = 2)
@@ -150,7 +150,7 @@ Put simply, dbinom finds the probability of getting a certain number of successe
 **Example:**  
 Bob makes 60\% of his free-throw attempts. If he shoots 12 free throws, what is the probability that he makes exactly 10?
 
-```{r}
+```{r "1_random_variables_simulation-7"}
 #find the probability of 10 successes during 12 trials where the probability of
 #success on each trial is 0.6
 dbinom(x = 10, size = 12, prob = .6)
@@ -166,7 +166,7 @@ Put simply, pbinom returns the area to the left of a given value q in the binomi
 **Example:**  
 Ando flips a fair coin 5 times. What is the probability that the coin lands on heads more than 2 times?
 
-```{r}
+```{r "1_random_variables_simulation-8"}
 #find the probability of more than 2 successes during 5 trials where the
 #probability of success on each trial is 0.5
 pbinom(2, size = 5, prob = .5, lower.tail = FALSE)
@@ -179,7 +179,7 @@ The probability that the coin lands on heads more than **2** times is **0.5**.
 **Example 2:**  
 Suppose Tyler scores a strike on 30\% of his attempts when he bowls. If he bowls 10 times, what is the probability that he scores 4 or fewer strikes?
 
-```{r}
+```{r "1_random_variables_simulation-9"}
 #find the probability of 4 or fewer successes during 10 trials where the
 #probability of success on each trial is 0.3
 pbinom(4, size = 10, prob = .3)
@@ -192,7 +192,7 @@ The function qbinom returns the value of the inverse cumulative density function
 
 Put simply, you can use qnorm to find out the $p^{th}$ quantile of the binomial distribution.
 
-```{r}
+```{r "1_random_variables_simulation-10"}
 #find the 10th quantile of a binomial distribution with 10 trials and prob
 #of success on each trial = 0.4
 qbinom(.10, size = 10, prob = .4)
@@ -206,7 +206,7 @@ qbinom(.40, size = 30, prob = .25)
 The function rbinom generates a vector of binomial distributed random variables given a vector length n, number of trials (size) and probability of success on each trial (prob).
 
 **Example:**  
-```{r}
+```{r "1_random_variables_simulation-11"}
 #generate a vector that shows the number of successes of 10 binomial
 #experiments with
 #100 trials where the probability of success on each trial is 0.3.
@@ -238,7 +238,7 @@ The dgeom function finds the probability of experiencing a certain amount of fai
 
 A researcher is waiting outside of a library to ask people if they support a certain law. The probability that a given person supports the law is $p = 0.2$. What is the probability that the fourth person the researcher talks to is the first person to support the law?
 
-```{r}
+```{r "1_random_variables_simulation-12"}
 dgeom(x = 3, prob = .2)
 ```
 The probability that the researchers experiences 3 “failures” before the first success is 0.1024.
@@ -248,7 +248,7 @@ The pgeom function finds the probability of experiencing a certain amount of fai
 
 A researcher is waiting outside of a library to ask people if they support a certain law. The probability that a given person supports the law is p = 0.2. What is the probability that the researcher will have to talk to more than 5 people to find someone who supports the law?
 
-```{r}
+```{r "1_random_variables_simulation-13"}
 1 - pgeom(q = 5, prob = .2)
 # same as
  pgeom(q = 5, prob = .2, lower.tail = FALSE)
@@ -261,7 +261,7 @@ The qgeom function finds the number of failures that corresponds to a certain pe
 
 A researcher is waiting outside of a library to ask people if they support a certain law. The probability that a given person supports the law is p = 0.2. We will consider a “failure” to mean that a person does not support the law. How many “failures” would the researcher need to experience to be at the 90th percentile for number of failures before the first success?
 
-```{r}
+```{r "1_random_variables_simulation-14"}
 qgeom(p = .90, prob = 0.2)
 ```
 The researcher would need to experience **10** “failures” to be at the 90th percentile for number of failures before the first success.
@@ -274,7 +274,7 @@ certain law. The probability that a given person supports the law is $p = 0.2$.
 We will consider a “failure” to mean that a person does not support the law.
 Simulate 10 scenarios for how many “failures” the researcher will experience 
 until she finds someone who supports the law.
-```{r}
+```{r "1_random_variables_simulation-15"}
 set.seed(0) #make this example reproducible
 
 rgeom(10, 0.2)
