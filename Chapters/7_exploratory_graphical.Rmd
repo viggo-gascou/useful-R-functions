@@ -1,0 +1,182 @@
+---
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "pdfs") })
+
+output:
+  pdf_document:
+    highlight: arrow
+---
+
+```{r, ECHO = FALSE, warning = FALSE, include = FALSE}
+library(knitr)
+library(kableExtra)
+library(RColorBrewer)
+library(UsingR)
+```
+
+# Exploratory data analysis - Graphical summaries
+
+## Histograms
+
+Histograms are useful graphical way of representing a data set and allows you to spot patterns that were otherwise not visible in the raw dataset.
+
+Take for example this dataset of randomly generated numbers sampled from a normal distribution:
+```{r, echo = FALSE, warning = FALSE}
+set.seed(1)
+data <- rnorm(100, mean = 1, sd = .2)
+data <- matrix(data, 10, 10, byrow = TRUE)
+kable(data, format = "latex", booktabs = T,
+  caption =
+  "Randomly generated normal dataset") %>%
+  kable_styling(latex_options = "HOLD_position") %>%
+  kable_styling(latex_options = "scale_down")
+```
+
+Just staring at the dataset for a while tells us very little. To see something useful, we can plot it as a histogram:
+
+Now this can be done in two ways:
+1. Using the **base R** function `hist(data, ...)`
+2. Using **ggplot2** to plot the histogram
+
+### Base R `hist(data)`
+To see all the available arguments that you can pass to the `hist()` function simply write `?hist` in the `R` console
+```{r}
+set.seed(1)
+data <- rnorm(1000, mean = 1, sd = .2)
+hist(data, col = "#f99d9d",
+  main = "Histogram of normally distributed dataset")
+```
+
+### Plotting multiple histograms on one plot with `hist(data)`
+
+To plot multiple histograms in with `Base R` one plot one can do as follows:
+```{r}
+#make this example reproducible
+set.seed(1)
+
+#define data
+x1 <- rnorm(1000, mean = 1, sd = 0.2)
+x2 <- rnorm(1000, mean = 0.4, sd = 0.1)
+
+#plot two histograms in same graph
+hist(x1, col = "red", xlim = c(0, 1.5),
+    main = "Multiple Histograms", xlab = "x")
+hist(x2, col = "green", add = TRUE)
+
+#add legend
+legend("topright", c("x1 variable", "x2 variable"), fill = c("red", "green"))
+```
+
+### ggplot2 `ggplot(data)`
+
+Now to use `ggplot` to plot your data you have to first make it into a data frame:
+```{r}
+library(ggplot2)
+set.seed(1)
+df <- data.frame(var = rep("x1", 1000),
+          value = c(rnorm(1000, mean = 1, sd = .2)))
+brx <- pretty(range(df$value),
+    n = nclass.Sturges(df$value), min.n = 1)
+    # the brx function is only used to make it look like the base R
+    # hist function which uses 'Sturges rule' to determine binsize i.e, 'breaks'
+    # the default binsize for geom_histogram is 30.
+ggplot(df, aes(x = value, fill = var)) + geom_histogram(breaks = brx)
+```
+
+### Plotting multiple histograms on one plot with `ggplot(data)`
+
+To plot multiple histograms in with `ggplot2` one plot one can do as follows:
+
+```{r}
+#make this example reproducible
+set.seed(1)
+
+#create data frame
+df <- data.frame(var = c(rep("x1", 1000), rep("x2", 1000)),
+                   value = c(rnorm(1000, mean = 1, sd = .2),
+                             rnorm(1000, mean = 0.4, sd = 0.1)))
+
+#plot multiple histograms
+ggplot(df, aes(x = value, fill = var)) +
+  geom_histogram(color = "#e9ecef", alpha = 0.6, position = "identity")
+```
+
+\newpage
+
+## Kernel density estimates
+
+We can graphically represent data in a more variegated plot by a so-called
+kernel density estimate.
+
+The idea behind the construction of the plot is to “put a pile of sand” around
+each element of the dataset. At places where the elements accumulate, the
+sand will pile up. The actual plot is constructed by choosing a $kernel \ K$ and
+a $bandwidth \ h$. 
+
+The $kernel \ K$ reflects the shape of the piles of sand, whereas
+the bandwidth is a tuning parameter that determines how wide the piles of sand will be.
+
+Formally, a kernel $K$ is a function $K : \mathbb{R} \rightarrow \mathbb{R}$.
+
+```{r kernel-density, echo=FALSE, out.width='100%', fig.cap='Examples of well-known kernels $K$', fig.align='center'}
+knitr::include_graphics(here::here('assets/kernel_density.png'))
+```
+
+To plot a kernel density estimate you can use either the `densityplot` function from the library `lattice` or you can use the **base R** function `plot` with the parameter `density()`.
+
+For simplicity I will choose to use the **base R** function and using the diamonds dataset from the `UsingR`.
+```{r, message = FALSE}
+library(UsingR)
+```
+```{r, out.width = "100%", out.height="120%"}
+kernels <- c("triangular", "rectangular", "gaussian", "cosine", "optcosine", "epanechnikov", "biweight")
+colors <- brewer.pal(7, "Accent")
+for (kernel in 1:7) {
+  main <- "Kernel density estimates with different kernels"
+  if (kernel == 1)
+    plot(density(diamond$price, bw = 10000, kernel = "triangular",
+    ), main = main, col = colors[kernel], lwd = 2)
+  else
+    lines(density(diamond$price, bw = 10000, kernel = kernels[kernel]), col = colors[kernel], lwd = 2)
+}
+legend('topright', kernels, fill = colors, cex = .7)
+```
+
+The `bw` argument specifes the bandwith that wil be used to create the kernel density estimate. The `kernel` argument specifies the kernel that will be used
+
+## Empirical distribution function
+
+Another way to graphically represent a dataset is to plot the data in a cumulative
+manner. This can be done using the empirical cumulative distribution
+function of the data.
+
+In `R` this can be done like this:
+
+```{r}
+plot(ecdf(diamond$price), col = "#74c6ef")
+```
+
+## Scatterplot
+
+In some situations one wants to investigate the relationship between two or
+more variables. In the case of two variables $x$ and $y$, the dataset consists of
+$pairs \ of \ observations$:
+$$
+(x_1, y_1), (x_2, y_2), \dots ,(x_n, y_n)
+$$
+We call such a dataset a bivariate dataset in contrast to the univariate dataset,
+which consists of observations of one particular quantity. We often like to investigate
+whether the value of variable y depends on the value of the variable $x$,
+and if so, whether we can describe the relation between the two variables. A
+first step is to take a look at the data, i.e., to plot the points $(x_i, y_i)$ for $i = 1, 2 \dots , n$. Such a plot is called a scatterplot.
+
+In `R` this can be acheived by simply using the `plot()` function:
+
+```{r}
+#create some fake data
+data <- data.frame(x = c(1, 1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10, 11, 11),
+                   y = c(13, 14, 17, 12, 23, 24, 25, 25, 24, 28, 32, 33, 35, 40, 41))
+
+#create scatterplot of data
+plot(data$x, data$y)
+```

@@ -1,0 +1,60 @@
+---
+title: "Applied statistics - Useful R functions"
+subtitle: "IT University of Copenhagen"
+author: "Viggo Yann Unmack Gascou"
+date: "Spring 2022"
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "../", output_file = "useful_functions.pdf") })
+output:
+  pdf_document:
+    latex_engine: xelatex
+    number_sections: true
+    toc_depth: 3
+    highlight: arrow
+---
+\aboverulesep=0ex
+\belowrulesep=0ex
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+```{r, ECHO = FALSE, warning = FALSE}
+library(knitr)
+library(kableExtra)
+library(RColorBrewer)
+library(UsingR)
+```
+
+```{r child = here::here("1_random_variables_simulation.Rmd")}
+```
+
+```{r child = here::here("2_expectation_variance.Rmd")}
+```
+
+```{r child = here::here("3_joint_independence.Rmd")}
+```
+
+```{r child = here::here("4_covariance_correlation.Rmd")}
+```
+
+```{r child = here::here("5_computations_random_variables.Rmd")}
+```
+
+```{r child = here::here("6_large_numbers_central_limit.Rmd")}
+```
+
+```{r child = here::here("7_exploratory_graphical.Rmd")}
+```
+
+```{r child = here::here("8_exploratory_numerical.Rmd")}
+```
+
+```{r child = here::here("9_statistical_models.Rmd")}
+```
+
+```{r child = here::here("10_bootstrapping.Rmd")}
+```
+
+```{r child = here::here("11_unbiased_estimator.Rmd")}
+```
