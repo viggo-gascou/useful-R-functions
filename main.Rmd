@@ -1,12 +1,11 @@
 ---
-title: "Applied statistics - Useful R functions"
-subtitle: "IT University of Copenhagen"
-author: "Viggo Yann Unmack Gascou"
-date: "Spring 2022"
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_file = "useful_R_functions.pdf") })
 output:
   pdf_document:
+    extra_dependencies: ["booktabs"]
+    includes: 
+      before_body: title.sty
     latex_engine: xelatex
     number_sections: true
     toc_depth: 3
