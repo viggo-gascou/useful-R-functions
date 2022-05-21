@@ -5,12 +5,12 @@ output:
   pdf_document:
     extra_dependencies: ["booktabs"]
     includes: 
-      before_body: title.sty
+      before_body: "Chapters/assets/title.sty"
     latex_engine: xelatex
     number_sections: true
     toc_depth: 3
     highlight: arrow
----
+--- 
 \aboverulesep=0ex
 \belowrulesep=0ex
 \tableofcontents
