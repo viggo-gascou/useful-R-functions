@@ -40,7 +40,7 @@ Suppose you have a dataset $S$ that conists of $n$ elements.
 
 Below are some common parameters with their corresponding sample statistic one might be interested in measuring
 
-\input{assets/sample_stats_table.tex}
+\input{`r here::here('Chapters', 'assets', 'sample_stats_table.tex')`}
 
 In any problem, we are always interested in measuring the population parameter. However, it's often too time-consuming, too costly, or simply not possible to actually measure every single individual element in the population, which is why we instead calculate a sample statistic and use that statistic to estimate the true population parameter. This can become more 'accurate' with bootstrapping as we know from the law of large numbers.
 
