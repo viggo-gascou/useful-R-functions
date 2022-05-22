@@ -19,6 +19,7 @@ output:
 \newpage
 
 ```{r "0_useful_functions-0", message = FALSE , warning = FALSE}
+# Loading required libraries
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
