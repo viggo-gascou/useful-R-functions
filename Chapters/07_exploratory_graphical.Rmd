@@ -5,6 +5,8 @@ knit: (function(inputFile, encoding) {
 output:
   pdf_document:
     highlight: arrow
+urlcolor: blue
+linkcolor: blue
 ---
 
 ```{r "7_exploratory_graphical-0", ECHO = FALSE, warning = FALSE, include = FALSE}
@@ -128,19 +130,22 @@ For simplicity I will choose to use the **base R** function and using the diamon
 ```{r "7_exploratory_graphical-7", message = FALSE}
 library(UsingR)
 ```
-```{r "7_exploratory_graphical-8", out.width = "100%", out.height="120%"}
-kernels <- c("triangular", "rectangular", "gaussian", "cosine", "optcosine", "epanechnikov", "biweight")
-colors <- brewer.pal(7, "Accent")
-for (kernel in 1:7) {
-  main <- "Kernel density estimates with different kernels"
-  if (kernel == 1)
-    plot(density(diamond$price, bw = 10000, kernel = "triangular",
-    ), main = main, col = colors[kernel], lwd = 2)
-  else
-    lines(density(diamond$price, bw = 10000, kernel = kernels[kernel]), col = colors[kernel], lwd = 2)
+```{r "7_exploratory_graphical-8", fig.cap='Examples of well-known kernels $K$ in `R`',}
+kernels <- c("triangular", "cosine", "epanechnikov",
+    "biweight", "rectangular", "gaussian")
+colors <- brewer.pal(7, "Dark2")
+par(mfrow = c(2, 3))
+for (kernel in seq_len(length(kernels))) {
+    title <- stringr::str_to_title(kernels[kernel])
+    plot(density(diamond$price, bw = 10000, kernel = kernels[kernel]),
+    main = paste(title, "kernel"), col = colors[kernel], lwd = 2)
 }
-legend('topright', kernels, fill = colors, cex = .7)
 ```
+
+Note: `R` also has the kernel 'optcosine' which is apparently less smooth than 
+'cosine' see [`R` documentation](http://kortlink.dk/2fwtn).  
+It looks almost the same as 'cosine' but with a bit sharper 'hinge' at the 
+beginning of the curve (almost like the 'triangular' kernel). Did not feel it was significant enough to include, but try it for yourself.
 
 The `bw` argument specifes the bandwith that wil be used to create the kernel density estimate. The `kernel` argument specifies the kernel that will be used
 
