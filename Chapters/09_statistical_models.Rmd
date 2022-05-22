@@ -125,4 +125,4 @@ ggplot(data, aes(x, y)) +
   labs(x = 'X Values', y = 'Y Values', title = 'Linear Regression Plot') +
   theme(plot.title = element_text(hjust = 0.5, size = 16, face = 'bold'))
 ```
-Note the `se` argument removes the standard error from the visualization of if it is needed simply remove it or set it to `TRUE`
+Note the `se` argument to the `geom_smooth()` function removes the standard error from the visualization if it is needed simply remove it or set it to `TRUE`
