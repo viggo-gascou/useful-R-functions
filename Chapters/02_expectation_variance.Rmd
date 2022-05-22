@@ -5,6 +5,8 @@ knit: (function(inputFile, encoding) {
 output:
   pdf_document:
     highlight: arrow
+urlcolor: blue
+linkcolor: blue
 ---
 
 ```{r "2_expectation_variance-0", ECHO = FALSE, warning = FALSE, include = FALSE}

@@ -5,6 +5,8 @@ knit: (function(inputFile, encoding) {
 output:
   pdf_document:
     highlight: arrow
+urlcolor: blue
+linkcolor: blue
 ---
 
 ```{r "9_statistical_models-0", ECHO = FALSE, warning = FALSE, include = FALSE}

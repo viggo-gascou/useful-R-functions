@@ -10,6 +10,8 @@ output:
     number_sections: true
     toc_depth: 3
     highlight: arrow
+urlcolor: blue
+linkcolor: blue
 --- 
 \aboverulesep=0ex
 \belowrulesep=0ex
