@@ -41,6 +41,7 @@ vignettes/*.pdf
 .Renviron
 
 # -- TeX ----------------------------------------------------------------------
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -317,5 +318,8 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
 # -- OTHER --------------------------------------------------------------------
+
 .DS_Store
+Chapters/pdfs/*.pdf
