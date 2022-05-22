@@ -6,6 +6,7 @@ output:
   pdf_document:
     highlight: arrow
 urlcolor: blue
+linkcolor: black
 ---
 
 ```{r "1_random_variables_simulation-0", ECHO = FALSE, warning = FALSE, include = FALSE}
