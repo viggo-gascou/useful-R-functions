@@ -6,7 +6,6 @@ output:
   pdf_document:
     highlight: arrow
 urlcolor: blue
-linkcolor: blue
 ---
 
 ```{r "6_large_numbers_central_limit-0", ECHO = FALSE, warning = FALSE, include = FALSE}

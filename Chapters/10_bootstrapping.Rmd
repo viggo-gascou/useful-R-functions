@@ -6,7 +6,6 @@ output:
     highlight: arrow
     extra_dependencies: ["booktabs"]
 urlcolor: blue
-linkcolor: blue
 ---
 
 ```{r "10_bootstrapping-0", ECHO = FALSE, warning = FALSE, include = FALSE}

@@ -6,7 +6,6 @@ output:
   pdf_document:
     highlight: arrow
 urlcolor: blue
-linkcolor: blue
 ---
 
 ```{r "11_unbiased_estimator-0", ECHO = FALSE, warning = FALSE, include = FALSE}

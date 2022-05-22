@@ -6,7 +6,6 @@ output:
   pdf_document:
     highlight: arrow
 urlcolor: blue
-linkcolor: blue
 ---
 
 ```{r "7_exploratory_graphical-0", ECHO = FALSE, warning = FALSE, include = FALSE}
