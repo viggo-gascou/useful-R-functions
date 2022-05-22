@@ -322,4 +322,4 @@ TSWLatexianTemp*
 # -- OTHER --------------------------------------------------------------------
 
 .DS_Store
-Chapters/pdfs/*.pdf
+Chapters/pdfs/
