@@ -12,6 +12,7 @@ library(knitr)
 library(kableExtra)
 library(RColorBrewer)
 library(UsingR)
+library(ggplot2)
 ```
 
 # Law of large numbers and Central limit theorem

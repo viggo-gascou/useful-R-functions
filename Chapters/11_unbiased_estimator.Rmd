@@ -12,8 +12,9 @@ library(knitr)
 library(kableExtra)
 library(RColorBrewer)
 library(UsingR)
+library(ggplot2)
 ```
 
 # Unbiased estimators
 
-# I DONT KNOW :)
+## I DONT KNOW :)

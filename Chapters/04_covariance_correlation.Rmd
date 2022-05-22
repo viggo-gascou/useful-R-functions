@@ -12,6 +12,7 @@ library(knitr)
 library(kableExtra)
 library(RColorBrewer)
 library(UsingR)
+library(ggplot2)
 ```
 
 # Covariance and correlation

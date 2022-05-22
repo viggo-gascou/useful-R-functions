@@ -18,11 +18,12 @@ output:
 \listoffigures
 \newpage
 
-```{r "0_useful_functions-0", ECHO = FALSE, warning = FALSE}
+```{r "0_useful_functions-0", message = FALSE , warning = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
 library(UsingR)
+library(ggplot2)
 ```
 
 ```{r child = here::here("Chapters","01_random_variables_simulation.Rmd")}

@@ -12,6 +12,7 @@ library(knitr)
 library(kableExtra)
 library(RColorBrewer)
 library(UsingR)
+library(ggplot2)
 ```
 
 # Basic statistical models
@@ -90,11 +91,14 @@ The model predicts that this new observation will have a response value of $26.1
 
 You can use the R visualization library ggplot2 to plot a fitted linear regression model using the following basic syntax:
 
-  ```
-  ggplot(data,aes(x, y)) +
-    geom_point() +
-    geom_smooth(method='lm')
-  ```
+
+
+> `ggplot(data,aes(x, y)) +`
+> 
+>> `geom_point() +`
+>
+>>`geom_smooth(method='lm')`
+
 The following example shows how to use this syntax in practice.
 
 Suppose we fit a simple linear regression model to the following dataset:
@@ -112,12 +116,13 @@ summary(model)
 ```{r "9_statistical_models-7"}
 # make sure to import the ggplot library: library(ggplot2)
 
-#create plot to visualize fitted linear regression model
+#c reate plot to visualize fitted linear regression model
 ggplot(data, aes(x, y)) +
   geom_point() +
   geom_smooth(method = 'lm', se = FALSE, col = "turquoise4") +
+  # these last two line makes the title, x and y labels and
+  # makes the header bold and in the middle
   labs(x = 'X Values', y = 'Y Values', title = 'Linear Regression Plot') +
-  #this last line makes the title header bold and in the middle
   theme(plot.title = element_text(hjust = 0.5, size = 16, face = 'bold'))
 ```
 Note the `se` argument removes the standard error from the visualization of if it is needed simply remove it or set it to `TRUE`
