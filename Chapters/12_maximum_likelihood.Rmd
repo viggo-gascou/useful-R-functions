@@ -1,0 +1,43 @@
+---
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "pdfs") })
+
+output:
+  pdf_document:
+    highlight: arrow
+urlcolor: blue
+linkcolor: black
+---
+
+```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
+library(knitr)
+library(kableExtra)
+library(RColorBrewer)
+library(UsingR)
+library(ggplot2)
+```
+
+# Maximum likelihood
+
+## Normal distribution
+
+Recall the probability density function of a normal distribution is given by:
+$$
+f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-(x-\mu)^2/2\sigma^2}
+$$
+Which we denote $N(\mu,\sigma^2)$
+
+The likelihood function is then given by:
+$$
+L(\mu, \sigma | x_1, \ldots, x_n) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma^2} e^{-(x_i-\mu)^2/2\sigma^2}
+$$
+
+Since we know that $\ell(\theta) = \ln(L(\theta))$
+
+The loglikelihood function is thus given by:
+
+\input{`r here::here('Chapters', 'assets', 'normal_max_likelihood.tex')`}
+
+In step 4 to 5: $\ln(e)$ is equal to $1$ so we can just remove it.
+
+In step 7 to 8: $2 \cdot \frac{1}{2}$ becomes $\frac{2}{2}$ so we can just remove it.
