@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r "9_statistical_models-0", ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -91,9 +91,7 @@ The model predicts that this new observation will have a response value of $26.1
 
 ### Plotting a regression model
 
-You can use the R visualization library ggplot2 to plot a fitted linear regression model using the following basic syntax:
-
-
+You can use the R visualization library `ggplot2` to plot a fitted linear regression model using the following basic syntax:
 
 > `ggplot(data,aes(x, y)) +`
 > 
@@ -116,9 +114,9 @@ summary(model)
 ```
 
 ```{r "9_statistical_models-7"}
-# make sure to import the ggplot library: library(ggplot2)
+# Make sure to import the ggplot library: library(ggplot2)
 
-#c reate plot to visualize fitted linear regression model
+# Create plot to visualize fitted linear regression model
 ggplot(data, aes(x, y)) +
   geom_point() +
   geom_smooth(method = 'lm', se = FALSE, col = "turquoise4") +

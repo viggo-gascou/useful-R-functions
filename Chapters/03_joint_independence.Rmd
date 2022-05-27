@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r "3_joint_independence-0", ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)

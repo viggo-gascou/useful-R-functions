@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r "11_unbiased_estimator-0", ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -19,4 +19,34 @@ library(ggplot2)
 
 # Unbiased estimators
 
-## I DONT KNOW :)
+An unbiased estimator of a parameter is an estimator whose expected value is equal to the parameter.
+
+That is, if the estimator $T$ is being used to estimate a parameter  $\theta$, then  $T$ is an unbiased estimator of  $\theta$ if  $E[T] = \theta$
+
+Remember that expectation can be thought of as a long-run average value of a random variable. If an estimator $T$ is unbiased, then on average it is equal to the number it is trying to estimate. Here "on average" involves imagining repeated samples, as follows:
+
+* Draw one random sample; compute the value of $T$ based on that sample.
+* Draw another random sample of the same size, independently of the first one; compute the value of $T$ based on this sample.
+* Repeat the step above as many times as you can.
+* You will now have lots of observed values of $T$.
+
+
+If $T$ is an unbiased estimator of $\theta$, then on average, these values will neither be greater than $\theta$ nor smaller than $\theta$.
+On average in the long run they will be just right: equal to $\theta$.
+
+This seems like a good property for an estimator to have. In many settings, natural estimators turn out to be unbiased. Let's look at some examples.
+
+## Unbiased estimator for the mean
+$$
+ \bar{X} = \frac{x_1, \ldots, x_n}{n}
+$$
+
+## Unbiased estimator for the variance
+$$
+ S^2 = \frac{1}{n-1} \sum^{n}_{i=1} (X_i - \bar{X})^2 
+$$
+
+## Unbiased for the uniform distribution $U(0,\Theta)$
+$$
+ \theta = \frac{2}{n}(X_1 + \dots + X_n) 
+$$

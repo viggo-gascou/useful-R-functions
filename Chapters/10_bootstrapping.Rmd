@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r "10_bootstrapping-0", ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -39,7 +39,7 @@ Suppose you have a dataset $S$ that conists of $n$ elements.
 5. Compare the calculated statistic with the 'real' statistic.
    - In empirical bootstrapping you could e.g., compare the sample mean with the population or 'true' mean
    - In parametric bootstrapping you could e.g., see if a dataset can be approximated by the normal distribution. One could first calculate the mean and the standard deviation and then use that to sample from a normal distribution with those parameters. ESTIMATE WITH MAXIMUM LIKELIHOOD??
-  # FIND SOME MORE INFO ON THIS CAUSE WTF
+  FIND SOME MORE INFO ON THIS 
 
 Below are some common parameters with their corresponding sample statistic one might be interested in measuring
 
@@ -152,5 +152,62 @@ hist(ks, xlim = c(0, 0.1))
 abline(v = ks_estimate, col = "red")
 ```
 
+## Bootstrapping and confidence intervals
+
+*Note: The questions are taken from an applied statistics mock exam.*
+*The answers to the questions are mine.*
+
+Let us look at the datasets `female.inc` `(UsingR)` that contain income distribution for females in 2001. You may ignore the information about the race of the individuals. Your goal is to estimate the mean female income together with its 95% confidence intervals. 
+
+(a) Why is bootstrapping a good strategy for finding the confidence intervals for the mean female income? (1pt)
+
+Let us look at how the data set is distributed by creating a simple histogram 
+```{r "10_bootstrapping-6"}
+data <- female.inc$income
+options(scipen = 999)
+# ^ Makes sure that the plot does not use 'scientific' notation
+hist(data)
+```
+
+Since the data is clearly not normally distributed it is a good strategy to use bootstrapping
+
+(b) Write a computer program that computes the bootstrap estimates for the 95% confidence intervals for the mean income of all the females in the dataset. (5pts)
+
+```{r "10_bootstrapping-7"}
+set.seed(2022) # Setting a seed to make the code 100 % reproducible/consistent.
+n <- length(data)
+boots <- function(data) {
+  means <- c()
+  for (i in 1:1000) {
+    s <- sample(data, n, replace = T)
+    means <- append(means, mean(s))
+    }
+    return(means)
+    }
+```
+
+(c) Report your numerical results for the mean and confidence interval together with a graphic illustrating the bootstrapped sample. (2pts)
+
+To find the 95 % confidence interval we can use the `quantile` command to determine the upper and lower bound of the confidence interval.
+```{r "10_bootstrapping-8"}
+boot_data <- boots(data)
+lower <- quantile(boot_data, prob = 0.025)
+upper <- quantile(boot_data, prob = 0.975)
+```
+So the lower bound of the confidence interval is `r format(lower, scientific = F)` and the upper bound of the confidence interval is `r format(upper, scientific = F)`. This means that we with 95 % confidence can say that the true/population mean is somewhere between `r format(lower, scientific = F)` USD and `r format(upper, scientific = F)` USD^[Currency found via `?female.inc` command].
+
+```{r "10_bootstrapping-9"}
+bootstrap_mean <- mean(boots(data))
+plot(density(boot_data),
+    main = "Bootstrapped mean income",
+      col = "darkgreen",
+      xlab = "Income (USD)")
+abline(v = bootstrap_mean, col = "darkblue", lwd = 2)
+text(bootstrap_mean, 0, "boot mean", srt = 90, pos = 2, srt = 0, cex = 0.75)
+abline(v = lower, col = "red", lwd = 1)
+text(lower, 0, "lower", srt = 90, pos = 2, srt = 0, cex = 0.75)
+abline(v = upper, col = "red", lwd = 1)
+text(upper, 0, "upper", srt = 90, pos = 2, srt = 0, cex = 0.75)
+```
 
 

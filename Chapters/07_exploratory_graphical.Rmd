@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r "7_exploratory_graphical-0", ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
