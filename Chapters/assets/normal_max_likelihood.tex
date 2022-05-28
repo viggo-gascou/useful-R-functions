@@ -1,7 +1,7 @@
 \begin{align}  
-    \ell(\mu, \sigma | x_1, \ldots, x_n) &= \ln(\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma^2} e^{-(x_i-\mu)^2/2\sigma^2}) \\
-    &= \sum_{i=1}^n \ln(\frac{1}{\sqrt{2\pi}\sigma^2} e^{-(x_i-\mu)^2/2\sigma^2}) \\
-    &= \sum_{i=1}^n \ln(\frac{1}{\sqrt{2\pi}\sigma^2}) + \ln(e^{-(x_i-\mu)^2/2\sigma^2}) \\
+    \ell(\mu,\sigma | x_1, \ldots, x_n) &= \ln(\prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma^2} e^{-(x_i-\mu)^2/2\sigma^2}) \\
+    &= \sum_{i=1}^n \ln(\frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x_i-\mu)^2/2\sigma^2}) \\
+    &= \sum_{i=1}^n \ln(\frac{1}{\sqrt{2\pi\sigma^2}}) + \ln(e^{-(x_i-\mu)^2/2\sigma^2}) \\
     &= \sum_{i=1}^n \ln((2\pi\sigma^2)^{-1/2}) - \frac{(x_i-\mu)^2}{2\sigma^2}\ln(e) \\
     &= \sum_{i=1}^n -\frac{1}{2}\ln(2\pi\sigma^2) - \frac{(x_i-\mu)^2}{2\sigma^2} \\
     &= \sum_{i=1}^n -\frac{1}{2}\ln(2\pi)--\frac{1}{2}\ln(\sigma^2) - \frac{(x_i-\mu)^2}{2\sigma^2} \\
