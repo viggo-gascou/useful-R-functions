@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r , ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -41,3 +41,39 @@ The loglikelihood function is thus given by:
 In step 4 to 5: $\ln(e)$ is equal to $1$ so we can just remove it.
 
 In step 7 to 8: $2 \cdot \frac{1}{2}$ becomes $\frac{2}{2}$ so we can just remove it.
+
+### The maximum likelihood estimators of $\mu$ and $\sigma^2$
+If we take the derivative of the loglikelihood function with respect to $\mu$ we get:
+$$
+\mu = \frac{1}{n} \sum_{i = 1}^n x_i
+$$
+
+And if we take the derivative of the loglikelihood function with respect to $\sigma$ we get:
+$$
+\sigma = \frac{1}{n} \sum_{i = 1}^n \sqrt{(x_i - \mu)^2}
+$$
+
+## Exponential distribution
+
+Recall the probability density function of an exponential distribution is given by:
+$$
+f(x) = \frac{1}{\lambda} e^{-\lambda x}
+$$
+
+Which we denote $Exp(\lambda)$
+
+The likelihood function is then given by:
+$$
+L(\lambda| X_1, \ldots, X_n) = \lambda^n e^{-\lambda \sum_{i = 1}^n X_i}
+$$
+
+Since we know that $\ell(\theta) = \ln(L(\theta))$
+
+The loglikelihood function is thus given by:
+
+\input{`r here::here('Chapters', 'assets', 'exponential_max_likelihood.tex')`}
+
+If we take the derivative of the loglikelihood function with respect to $\lambda$ we get:
+$$
+\lambda = n \frac{1}{\lambda} - \sum_{i = 1}^n x_i
+$$
