@@ -61,3 +61,6 @@ library(ggplot2)
 
 ```{r child = here::here("Chapters","11_unbiased_estimator.Rmd")}
 ```
+
+```{r child = here::here("Chapters","12_maximum_likelihood.Rmd")}
+```
