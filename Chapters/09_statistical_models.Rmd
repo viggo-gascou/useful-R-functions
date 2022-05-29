@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r , ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
@@ -61,8 +61,6 @@ predict(model, newdata = new)
 The model predicts that this new observation will have a response value of $25.36364$.
 
 ### Multiple linear regression model
-
-Multiple Linear Regression Model
 
 The following code shows how to fit a multiple linear regression model in R:
 

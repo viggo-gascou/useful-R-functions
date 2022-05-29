@@ -9,7 +9,7 @@ urlcolor: blue
 linkcolor: black
 ---
 
-```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
+```{r , ECHO = FALSE, warning = FALSE, include = FALSE}
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
