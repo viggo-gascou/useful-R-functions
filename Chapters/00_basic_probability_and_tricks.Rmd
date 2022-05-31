@@ -1,0 +1,188 @@
+---
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "pdfs") })
+
+output: 
+  pdf_document:
+    highlight: arrow
+urlcolor: blue
+linkcolor: black
+---
+
+```{r setup, ECHO = FALSE, warning = FALSE, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+library(dplyr)
+library(knitr)
+library(UsingR)
+print_samp_space <- function(space, name) {
+    if (nrow(space) == 0) return(cat("$$", name, "= \\emptyset", "$$"))
+
+    output <- cat("$$", "\\begin{aligned}", name, "= &\\{")
+
+    for (i in seq_len(nrow(space))) {
+        if (i == nrow(space)) {
+            output <- output + cat("(", paste(unlist(space[i, ]), collapse = ", "), ")\\}", "\\end{aligned}", "$$")
+        }
+        else if (i == 8 | i == 16 | i == 24| i == 48) {
+          output <- output + cat("(", paste(unlist(space[i, ]), collapse = ", "), "),", "\\\\", "&", "\n")
+        }
+        else {
+            output <- output +  cat("(", paste(unlist(space[i, ]), collapse = ", "), "),")
+        }
+    }
+}
+```
+
+# Useful `R` stuff
+
+## Setup chunk
+This is a '`setup`' chunk that includes all the libraries allowed in the Applied Statistics exam along with a function I created to display sample spaces as proper \LaTeX \ as long as they have been created using the `expand_grid()` function. See the code chunk for more details on usage of this function. If you want to copy this code chunk remember to add the three backticks before and after the whole thing ` ``` `.
+```{embed, file = "assets/r_setup_chunk.txt", lang = "R"}
+```
+
+## Creating sample spaces
+
+In `R` it is sometimes useful to create a sample space of say throwing a coin 3 times. This is kind of tedious to do by hand, but is very easy to do in `R`:
+```{r 00_basic_probability_and_tricks-1}
+# Create the outcomes that are possible with each throw
+coin <- c("H", "T")
+# Create the sample space
+# Simply repeat the variable name for the amount of throws you require - here: 3
+samp_space <- expand.grid(coin, coin, coin)
+#Renaming the columns so it becomes more readable
+colnames(samp_space) <- c("throw_1", "throw_2", "throw_3")
+```
+This creates the sample space $\Omega$ and using the `print_samp_space` function we get:
+```{r 00_basic_probability_and_tricks-2, results='asis'}
+print_samp_space(samp_space, "\\Omega")
+```
+
+Tip: *If you want to show the sample space right after some text without the weird empty space simply add the '`echo = FALSE`' flag to the chunk flags*
+Like this:
+```{embed, file = "assets/print_samp_space.txt", lang = "R"}
+```
+Remember to add the backticks ` ``` ` before and after.
+
+### Subsets of sample spaces
+
+It is also sometimes useful to create events from sample spaces that live up to specific requirements:
+
+*Note: From 2019 exam*
+
+(b) (2 pts) Write down the set of outcomes corresponding to each of the following events
+
+* A: “We get at least one tails”
+
+* B: “The coin always comes with the same side up.”
+
+Again because we created the sample space in `R` it become easier to create events that conform to specific requirements:
+
+```{r 00_basic_probability_and_tricks-3}
+# Checking that either throw_1, throw_2, or throw_3 are tails
+event_a <- subset(samp_space, throw_1 == "T" | throw_2 == "T" | throw_3 == "T")
+```
+Which creates the following event $A$:
+```{r 00_basic_probability_and_tricks-4, results='asis', echo = F}
+print_samp_space(event_a, "A")
+```
+And for event B:
+```{r 00_basic_probability_and_tricks-5}
+# Checking that throw_1 is equal to throw_2 and that throw_2 is equal to throw_3
+# If throw_1 is equal to throw_2 and throw_3 is equal to throw_2, then throw_3
+# has to be equal to throw_1
+event_b <- subset(samp_space, throw_1 == throw_2 & throw_2 == throw_3)
+```
+Which becomes the event $B$:
+```{r 00_basic_probability_and_tricks-6, results='asis', echo = F}
+print_samp_space(event_b, "B")
+```
+
+### Complements of sets
+We can easily create the complements of events $A$ and $B$ respectively by using the `anti_join` function from the `dplyr` library:
+```{r 00_basic_probability_and_tricks-7, message = F}
+comp_a <- anti_join(samp_space, event_a)
+comp_b <- anti_join(samp_space, event_b)
+```
+Which creates $A^c$:
+```{r 00_basic_probability_and_tricks-8, results='asis', echo = F}
+print_samp_space(comp_a, "A^c")
+```
+And $B^c$:
+```{r 00_basic_probability_and_tricks-9, results='asis', echo = F}
+print_samp_space(comp_b, "B^c")
+```
+
+### Intersection of sets
+And with the `inner_join` (also from the `dplyr` library) function we can get the intersection of two sets:
+```{r 00_basic_probability_and_tricks-10, message = F}
+event_c <- inner_join(event_a, event_b)
+```
+```{r 00_basic_probability_and_tricks-11, results='asis', echo = F}
+print_samp_space(event_c, "A \\cap B")
+```
+
+### Union of sets
+And with the `full_join` (from the `dplyr` library) function we can get the union of two sets:
+```{r 00_basic_probability_and_tricks-12, message = F}
+event_c <- full_join(event_a, event_b)
+```
+```{r 00_basic_probability_and_tricks-13, results='asis', echo = F}
+print_samp_space(event_c, "A \\cup B")
+```
+
+\newpage
+
+# Basic probabilities
+
+If we want to calculate the probability of the events created using the above methods we can easily do so by using the `nrow()`function and dividing the two numbers:
+
+```{r 00_basic_probability_and_tricks-14}
+prob_a <- nrow(event_a) / nrow(samp_space)
+prob_a
+```
+
+## De Morgan's Law of Union and Intersection
+
+$$
+(A \cup B)^c = A^c \cap B^c
+$$
+And
+$$
+(A \cap B)^c = A^c \cup B^c
+$$
+
+## Conditional probability
+
+$$
+P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{\text{A and B occurs}}{\text{B occurs}}
+$$
+
+### Bayes theorem
+
+*Bayes Theorem*, is one of the most useful formulas in conditional probability. It is a way to compute the opposite conditional probability. So, assume we know $P(B|A)$, we can compute $P(A|B)$ as follows:
+
+$$
+P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+$$
+
+I order to find $P(B)$, we use the law of total probability, which results in the extended Bayes Rule:
+
+$$
+P(A|B)= \frac{P(B|A) \cdot P(A)}{P(B|A) \cdot P(A) + P(B|A^c) \cdot P(A^c)}
+$$
+
+### Chain rule
+
+$$
+P(A \cap B) = P(A | B) \cdot P(B) = P(B|A) \cdot P(A)
+$$
+
+# Venn diagrams
+
+Image from [MIT OpenCourseWare](http://ocw.mit.edu)
+(On next page)
+```{r "00_basic_probability_and_tricks-15", echo=FALSE, out.width='100%', fig.cap='Sixteen things you can say about A and B', fig.align='center'}
+knitr::include_graphics(here::here('Chapters', 'assets', 'venn_diagrams.pdf'))
+```
+
