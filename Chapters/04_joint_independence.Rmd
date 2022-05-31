@@ -32,7 +32,7 @@ kable(co,
   caption = "Relation between hair color and eye color.", booktabs = T) %>%
   kable_styling() %>%
   add_header_above(c(" ", "Hair color" = 3), bold = T) %>%
-  group_rows(index = c("Eye color" = 2))
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 
