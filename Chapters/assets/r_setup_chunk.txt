@@ -1,0 +1,38 @@
+{r "setup", include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+library(dplyr)
+library(knitr)
+library(UsingR)
+
+# This is a self created function to print sample spaces or events that have
+# been created with the expand.grid() function. It can also detect if the event/
+# sample space is empty, by printing the symbol for the empty space.
+# It works by looping through the data frame
+# and adding each row to the cat() function which is able to print and render
+# latex and markdown commands properly only if used with the code chunk flag:
+# " results = 'asis' ".
+# To print a sample space simply call the function with the event/sample space
+# you want to print and the name of the event/sample space:
+# like this: print_samp_space(event_to_be_printed, name_of_event)
+# remember to escape latex commands i.e. if you want to create an event/sample
+# space called Omega you have to write " \\Omega " or if you want to write the
+# intersection of A and B you have to write " A \\cap B ".
+
+print_samp_space <- function(space, name) {
+    if (nrow(space) == 0) return(cat("$$", name, "= \\emptyset", "$$"))
+
+    output <- cat("$$", "\\begin{aligned}", name, "= &\\{")
+
+    for (i in seq_len(nrow(space))) {
+        if (i == nrow(space)) {
+            output <- output + cat("(", paste(unlist(space[i, ]), collapse = ", "), ")\\}", "\\end{aligned}", "$$")
+        }
+        else if (i == 8 | i == 16 | i == 24| i == 48) {
+          output <- output + cat("(", paste(unlist(space[i, ]), collapse = ", "), "),", "\\\\", "&", "\n")
+        }
+        else {
+            output <- output +  cat("(", paste(unlist(space[i, ]), collapse = ", "), "),")
+        }
+    }
+}

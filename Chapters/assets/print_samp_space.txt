@@ -1,0 +1,2 @@
+{r, results='asis', echo = FALSE}
+print_samp_space(samp_space, "\\Omega")
