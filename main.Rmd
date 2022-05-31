@@ -29,6 +29,9 @@ library(UsingR)
 library(ggplot2)
 ```
 
+```{r child = here::here("Chapters","00_basic_probability_and_tricks.Rmd")}
+```
+
 ```{r child = here::here("Chapters","01_random_variables_simulation.Rmd")}
 ```
 
