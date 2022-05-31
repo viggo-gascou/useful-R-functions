@@ -29,41 +29,41 @@ library(UsingR)
 library(ggplot2)
 ```
 
-```{r child = here::here("Chapters","00_basic_probability_and_tricks.Rmd")}
+```{r child = here::here("Chapters","01_basic_probability_and_tricks.Rmd")}
 ```
 
-```{r child = here::here("Chapters","01_random_variables_simulation.Rmd")}
+```{r child = here::here("Chapters","02_random_variables_simulation.Rmd")}
 ```
 
-```{r child = here::here("Chapters","02_expectation_variance.Rmd")}
+```{r child = here::here("Chapters","03_expectation_variance.Rmd")}
 ```
 
-```{r child = here::here("Chapters","03_joint_independence.Rmd")}
+```{r child = here::here("Chapters","04_joint_independence.Rmd")}
 ```
 
-```{r child = here::here("Chapters","04_covariance_correlation.Rmd")}
+```{r child = here::here("Chapters","05_covariance_correlation.Rmd")}
 ```
 
-```{r child = here::here("Chapters","05_computations_random_variables.Rmd")}
+```{r child = here::here("Chapters","06_computations_random_variables.Rmd")}
 ```
 
-```{r child = here::here("Chapters","06_large_numbers_central_limit.Rmd")}
+```{r child = here::here("Chapters","07_large_numbers_central_limit.Rmd")}
 ```
 
-```{r child = here::here("Chapters","07_exploratory_graphical.Rmd")}
+```{r child = here::here("Chapters","08_exploratory_graphical.Rmd")}
 ```
 
-```{r child = here::here("Chapters","08_exploratory_numerical.Rmd")}
+```{r child = here::here("Chapters","09_exploratory_numerical.Rmd")}
 ```
 
-```{r child = here::here("Chapters","09_statistical_models.Rmd")}
+```{r child = here::here("Chapters","10_statistical_models.Rmd")}
 ```
 
-```{r child = here::here("Chapters","10_bootstrapping.Rmd")}
+```{r child = here::here("Chapters","11_bootstrapping.Rmd")}
 ```
 
-```{r child = here::here("Chapters","11_unbiased_estimator.Rmd")}
+```{r child = here::here("Chapters","12_unbiased_estimator.Rmd")}
 ```
 
-```{r child = here::here("Chapters","12_maximum_likelihood.Rmd")}
+```{r child = here::here("Chapters","13_maximum_likelihood.Rmd")}
 ```
