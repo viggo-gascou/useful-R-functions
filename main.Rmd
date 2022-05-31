@@ -9,7 +9,7 @@ output:
     latex_engine: xelatex
     number_sections: true
     toc_depth: 3
-    highlight: arrow
+    highlight: "Chapters/assets/arrow.theme"
 urlcolor: blue
 linkcolor: black
 --- 
@@ -22,6 +22,13 @@ linkcolor: black
 
 ```{r "setup", message = FALSE , warning = FALSE}
 # Loading required libraries
+if (!requireNamespace("here"))
+  stop('
+
+  HOLD ON!
+  YOU NEED TO INSTALL THE PACKAGE "here":
+  Try Using install.packages("here")
+  ')
 library(knitr)
 library(kableExtra)
 library(RColorBrewer)
