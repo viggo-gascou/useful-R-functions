@@ -16,4 +16,4 @@ packages <- c("dplyr", "knitr",
 install.packages(setdiff(packages, rownames(installed.packages())))
 ```
 
-## [TODO](TODO.md)
+Just copy all the above lines and run them directly in your `R` terminal of choice.  
